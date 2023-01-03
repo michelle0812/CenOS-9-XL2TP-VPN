@@ -3,7 +3,7 @@
 This for CentOS Stream 9，其他版本不保證可以用
 
   第一步：安裝Libreswan與x2ltpd
-root# dnf install libreswan xl2tpd -y
+root# dnf install libreswan xl2tpd -y <hr>
 
   打開vpn需要用到的網路連接埠，啟用NAT功能
 firewall-cmd --zone=public --add-port=500/udp --permanent ;\
