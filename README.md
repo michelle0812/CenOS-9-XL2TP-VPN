@@ -1,4 +1,4 @@
-# CenOS-9-XL2TP-VPN
+# CenOS-9-XL2TP-VPN 筆記
 <code>
 This for CentOS Stream 9，其他版本不保證可以用
 
