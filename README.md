@@ -5,7 +5,7 @@ This for CentOS Stream 9，其他版本不保證可以用
   第一步：安裝Libreswan與x2ltpd
 root# dnf install libreswan xl2tpd -y
 
-  打開vpn需要用到的服務
+  打開vpn需要用到的網路連接埠，啟用NAT功能
 firewall-cmd --zone=public --add-port=500/udp --permanent ;\
 firewall-cmd --zone=public --add-port=1701/udp --permanent ;\
 firewall-cmd --zone=public --add-port=4500/udp --permanent ;\
@@ -92,5 +92,11 @@ length bit = yes
 # Secrets for authentication using CHAP
 # client        server  secret                  IP addresses
 test-account    *       account-password        *
+
+  第三步：啟動vpn相關服務
+  root# sysctl -p ; ipsec start ; ipsec verify # 檢查啟用ipsec後有沒有異常資訊
+  root# echo "logfile /var/log/xl2tpd.log" >> /etc/ppp/options.xl2tpd ;\
+  systemctl enable --now xl2tpd ; systemctl status xl2tpd 檢查啟用xl2tpd後有沒有異常資訊
   
+  第四步：到此VPN應該設定完成了，若不行的話將vpn主機重開機再試試看
 </code>
