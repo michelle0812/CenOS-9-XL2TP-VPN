@@ -19,7 +19,8 @@ cp /etc/sysctl.conf /etc/sysctl.conf.bsd ;\
 cp /etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf.bsd ;\
 cp /etc/ppp/chap-secrets /etc/ppp/chap-secrets.bsd
 
-第二步：編輯ipsec與xl2tp相關設定檔
+
+  第二步：編輯ipsec與xl2tp相關設定檔
 root# vi /etc/ipsec.conf
 
 version 2.0
@@ -53,5 +54,33 @@ conn L2TP-PSK
   type=transport
   also=shared
 
-include /etc/ipsec.d/*.conf
+include /etc/ipsec.d/*.conf 
+#(檔案結束存檔離開)
+  
+  root# vi /etc/ipsec.secrets
+include /etc/ipsec.d/*.secrets
+%any: PSK "ThisIsTheSharingKey"
+# 共享密鑰 (檔案結束存檔離開)
+  
+  root vi /etc/sysctl.conf 加入以下，並替換成自己的網卡代號
+net.ipv4.conf.ens160.rp_filter = 0
+net.ipv4.conf.ens224.rp_filter = 0
+net.ipv4.conf.ppp0.rp_filter = 0
+net.ipv4.conf.ip_vti0.rp_filter = 0
+net.ipv4.conf.lo.rp_filter = 0
+  
+  root# vi /etc/xl2tpd/xl2tpd.conf
+[global]
+ipsec saref = yes
+[lns default]
+ip range = 192.168.253.211-192.168.253.230
+require chap = yes
+refuse pap = yes
+require authentication = yes
+name = LinuxVPNserver
+ppp debug = yes
+pppoptfile = /etc/ppp/options.xl2tpd
+length bit = yes
+  
+  
 </code>
