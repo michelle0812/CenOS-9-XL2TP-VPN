@@ -1,13 +1,14 @@
 # CenOS-9-XL2TP-VPN
-Thsis for CentOS Stream 9，其他版本不保證可以用 ;\\
+<code>
+This for CentOS Stream 9，其他版本不保證可以用 ;\
 第一步：安裝Libreswan與x2ltpd
 root# dnf install libreswan xl2tpd -y
 
 打開vpn需要用到的服務
-firewall-cmd --zone=public --add-port=500/udp --permanent ;\\
-firewall-cmd --zone=public --add-port=1701/udp --permanent ;\\
-firewall-cmd --zone=public --add-port=4500/udp --permanent ;\\
-firewall-cmd --zone=public --add-masquerade --permanent ;\\
+firewall-cmd --zone=public --add-port=500/udp --permanent ;\
+firewall-cmd --zone=public --add-port=1701/udp --permanent ;\
+firewall-cmd --zone=public --add-port=4500/udp --permanent ;\
+firewall-cmd --zone=public --add-masquerade --permanent ;\
 systemctl restart firewalld
 
 備份既有的vpn相關設定檔
@@ -19,7 +20,7 @@ cp /etc/ppp/chap-secrets /etc/ppp/chap-secrets.bsd
 
 第二步：編輯ipsec與xl2tp相關設定檔
 root# vi /etc/ipsec.conf
-<code>
+
 version 2.0
 
 config setup
