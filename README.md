@@ -3,7 +3,7 @@
 This for CentOS Stream 9，其他版本不保證可以用
 
   第一步：安裝Libreswan與x2ltpd
-root# dnf install libreswan xl2tpd -y <hr>
+root# dnf install libreswan xl2tpd -y 
 
   打開vpn需要用到的網路連接埠，啟用NAT功能
 firewall-cmd --zone=public --add-port=500/udp --permanent ;\
@@ -22,7 +22,7 @@ cp /etc/ppp/chap-secrets /etc/ppp/chap-secrets.bsd
 
   第二步：編輯ipsec與xl2tp相關設定檔
 root# vi /etc/ipsec.conf
-  
+  <hr>
 version 2.0
 
 config setup
@@ -57,7 +57,7 @@ conn L2TP-PSK
 include /etc/ipsec.d/*.conf
   
   root# vi /etc/ipsec.secrets
-
+<hr>
 include /etc/ipsec.d/*.secrets
 %any: PSK "ThisIsTheSharingKey"
 
@@ -73,6 +73,7 @@ net.ipv4.conf.lo.rp_filter = 0
 
   
   root# vi /etc/xl2tpd/xl2tpd.conf
+  <hr>
 [global]
 ipsec saref = yes
 [lns default]
@@ -87,6 +88,7 @@ length bit = yes
   
   
   root# vi /etc/ppp/chap-secrets
+  <hr>
 # Secrets for authentication using CHAP
 # client        server  secret                  IP addresses
 test-account    *       account-password        *
