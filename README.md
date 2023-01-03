@@ -1,6 +1,6 @@
 # CenOS-9-XL2TP-VPN
 <code>
-This for CentOS Stream 9，其他版本不保證可以用 ;\
+This for CentOS Stream 9，其他版本不保證可以用
 第一步：安裝Libreswan與x2ltpd
 root# dnf install libreswan xl2tpd -y
 
